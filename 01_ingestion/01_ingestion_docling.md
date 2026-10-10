@@ -1,10 +1,10 @@
 # 01 · Ingestion with Docling
 
-**Notebook:** [`01_ingestion_docling.ipynb`](01_ingestion_docling.ipynb) · **Runtime:** Google Colab, T4 GPU
+**Notebook:** 01_ingestion_docling.ipynb · **Runtime:** Google Colab, T4 GPU
 
 Turns raw annual-report PDFs into structured, searchable pieces: **text chunks, tables and charts**, each tagged with company, fiscal year and page number, so every later answer can be cited back to its source page.
 
-## Input → output
+## Input -> output
 
 | | |
 |---|---|
@@ -64,10 +64,10 @@ flowchart LR
 
 ## Issues found and fixed
 
-- **Out-of-memory crash** on full reports → 40-page batching with checkpointing
-- **Messy IDs** from folder names with spaces and 2-digit years → one-time migration to clean `<company>_<yyyy>` IDs, no reprocessing
+- **Out-of-memory crash** on full reports : 40-page batching with checkpointing
+- **Messy IDs** from folder names with spaces and 2-digit years : one-time migration to clean `<company>_<yyyy>` IDs, no reprocessing
 - **Dropped table cells:** Docling can warn that some PDF text cells don't fit the table grid; tables are spot-checked against their page images
-- **₹ symbol stored as "H" or "C"** by custom PDF fonts (`(H in Crore)`) → fixed at load time in Notebook 2
+- **₹ symbol stored as "H" or "C"** by custom PDF fonts (`(H in Crore)`) : fixed at load time in Notebook 2
 
 ## Next
 
