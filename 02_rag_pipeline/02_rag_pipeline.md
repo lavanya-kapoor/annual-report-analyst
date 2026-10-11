@@ -1,4 +1,4 @@
-# 02 – Multimodal RAG Pipeline
+# 02 - Multimodal RAG Pipeline
 
 `02_rag_pipeline.ipynb` turns parsed annual-report elements (text, tables and images) into a question-answering system that answers from text, tables **and charts**, cites the exact page for every fact, and refuses when the answer isn't in the reports.
 
@@ -19,8 +19,8 @@ Data: three years (FY2023–FY2025) of AU Small Finance Bank annual reports.
 ## What the notebook does
 
 1. **Cleans text.** Custom PDF fonts store the ₹ symbol as "H"; targeted regexes restore it without touching words like "Holding".
-2. **Filters images with CLIP.** Zero-shot classification keeps charts and drops photos, logos and icons (537 → 208 images).
-3. **Removes duplicates.** Perceptual hashing removes repeated images within each report (208 → 207).
+2. **Filters images with CLIP.** Zero-shot classification keeps charts and drops photos, logos and icons (537 -> 208 images).
+3. **Removes duplicates.** Perceptual hashing removes repeated images within each report (208 -> 207).
 4. **Summarizes tables and charts with Gemini.** 6 items per call, returned as JSON. Digital tables are sent as Markdown (exact numbers); charts are sent as images. Summaries are cached, and the job survives per-minute and daily quota limits with a fallback chain across models.
 5. **Embeds and indexes.** bge-small embeddings stored in ChromaDB using a multi-vector pattern: search runs on summaries, but answers use the original table or chart image.
 6. **Retrieves with metadata filters.** Company and fiscal year are parsed from the question ("FY 2023-24", "FY24", "2024") and applied before similarity search, so an FY24 question can't pull FY23 figures.
