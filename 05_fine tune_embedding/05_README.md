@@ -1,6 +1,6 @@
-# 05 – Fine-tuning the Embedding Model
+# 05 - Fine-tuning the Embedding Model
 
-`05_finetune_embeddings.ipynb` fine-tunes `BAAI/bge-small-en-v1.5`, the embedding model behind the text search in Notebooks 2–4, on question → passage pairs generated from the annual reports themselves. No manual labelling was needed.
+`05_finetune_embeddings.ipynb` fine-tunes `BAAI/bge-small-en-v1.5`, the embedding model behind the text search in Notebooks 2–4, on question to passage pairs generated from the annual reports themselves. No manual labelling was needed.
 
 ## Headline results
 
