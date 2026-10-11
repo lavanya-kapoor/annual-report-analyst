@@ -64,7 +64,7 @@ Answers for all 56 questions were generated with the Notebook 2 prompt, then gra
 
 ## Refusal threshold
 
-The reranker's top score separates answerable from unanswerable questions well: median 0.999 for answerable vs 0.47 for unanswerable. At a threshold of 0.8, the system would refuse 5/5 unanswerable questions and wrongly refuse 2/51 answerable ones, *before* calling the LLM.
+The reranker's top score separates answerable from unanswerable questions well: median 0.999 for answerable vs 0.47 for unanswerable. At a threshold of 0.8, the system would refuse 5/5 unanswerable questions and wrongly refuse 2/51 answerable ones, before calling the LLM.
 
 ## Error analysis
 
