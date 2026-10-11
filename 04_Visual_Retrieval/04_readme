@@ -1,4 +1,4 @@
-# 04 – Visual Retrieval (ColQwen2) and Fusion
+# 04 - Visual Retrieval (ColQwen2) and Fusion
 
 `04_visual_retrieval_colpali.ipynb` adds a second search path that skips parsing entirely: it searches **images of whole report pages** with ColQwen2, then combines that with the hybrid text search from Notebook 3 and measures both retrieval and answer accuracy on the same 56-question test set.
 
@@ -70,7 +70,7 @@ Refusals here are detected from the answer text itself ("I couldn't find this in
 
 ## Caveats
 
-- The accuracy gain over hybrid is **2 questions out of 51** (41 → 43).
+- The accuracy gain over hybrid is **2 questions out of 51** (41 to 43).
 - The setups don't send identical context: fused sends 6 text items + 2 page images, hybrid sends 8 text items.
 - Visual-path pages were judged from page images, while text-path pages mostly reused Notebook 3's item-level judgments, so the judged comparison isn't perfectly like-for-like.
 - Test questions were generated from the parsed content, which may favour text search.
