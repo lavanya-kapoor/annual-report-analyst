@@ -54,7 +54,6 @@ An early answer to *"How did total advances change between FY23 and FY24?"* incl
 
 ## Limitations and next steps
 
-- **Evaluation is manual so far.** Next: a labeled question set to measure retrieval hit@k, numeric answer accuracy and refusal rate.
+- **Evaluation** is in Notebook 3: a 56-question test set, seven retrieval strategies compared, and end-to-end answer accuracy.
 - **Single company.** The company filter is implemented but untested across multiple issuers.
 - **Automated number checking.** Verify that every number in an answer appears in its cited source, rather than relying on the prompt alone.
-- **Relevance threshold.** Refuse before calling the model when no retrieved source scores above a cutoff.
