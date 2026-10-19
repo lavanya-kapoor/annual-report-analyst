@@ -1,0 +1,6 @@
+gradio>=5.0
+sentence-transformers>=6.1
+rank-bm25>=0.2.2
+google-genai>=1.0
+numpy
+pillow
