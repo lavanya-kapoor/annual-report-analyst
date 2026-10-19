@@ -1,10 +1,12 @@
 # 06 · App: Gradio
 
-**Files:** [`app.py`](app.py) · [`requirements.txt`](requirements.txt) · [`06_app_and_deploy.ipynb`](06_app_and_deploy.ipynb) (packages the data and launches the app) · **Runtime:** Google Colab · **Needs:** `GEMINI_API_KEY` in Colab Secrets
+- **Files:** app.py, requirements.txt,  06_app_and_deploy.ipynb (packages the data and launches the app) 
+- **Runtime:** Google Colab 
+- **Needs:** `GEMINI_API_KEY` in Colab Secrets
 
 A web app over the final system. Type a question and get a grounded answer with page citations, the list of sources used, and the charts that informed the answer.
 
-![Answer drawn from a bar chart, with page citations](../assets/demo_chart.png)
+![Answer drawn from a bar chart, with page citations](demo_chart.png)
 
 ## What the app uses
 
@@ -23,9 +25,9 @@ Search uses plain numpy over the exported embeddings rather than ChromaDB, so th
 
 | Question | Sources used | Outcome | Time |
 |---|---|---|---|
-| Gross NPA closing balance in FY 2023-24 | Table | ✅ Exact total plus the sub-standard / doubtful / loss breakdown, cited to the page | 0.14 s search · 1.1 s answer |
-| How has net profit grown over the past five years? | Bar chart + tables | ✅ All five yearly figures read from the chart, plus year-on-year growth on the correct base | 0.09 s search · 2.8 s answer |
-| Who is the CEO of Google? | n/a | ✅ Refused: not in the reports | n/a |
+| Gross NPA closing balance in FY 2023-24 | Table | Exact total plus the sub-standard / doubtful / loss breakdown, cited to the page | 0.14 s search · 1.1 s answer |
+| How has net profit grown over the past five years? | Bar chart + tables | All five yearly figures read from the chart, plus year-on-year growth on the correct base | 0.09 s search · 2.8 s answer |
+| Who is the CEO of Google? | n/a | Refused: not in the reports | n/a |
 
 ## Reliability
 
@@ -50,6 +52,6 @@ The link stays live while the launch cell is running.
 | Step | Time |
 |---|---|
 | Search (CPU) | under 0.5 s |
-| Gemini answer | 1–10 s, longer with charts attached |
+| Gemini answer | 1-10 s, longer with charts attached |
 
 **Libraries:** `gradio`, `sentence-transformers`, `rank_bm25`, `google-genai`, `numpy`
