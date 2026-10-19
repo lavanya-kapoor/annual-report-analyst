@@ -1,10 +1,8 @@
-# 📊 Annual Report Analyst: Multimodal RAG over Financial Reports
-
-![Answer drawn from a bar chart, with page citations](06_app/demo_chart.png)
+# Annual Report Analyst: Multimodal RAG over Financial Reports
 
 ## 1. Problem statement
 
-Annual reports run to 150–250 pages, and much of the important information sits in **tables and charts**, not running text. Analysts spend hours finding a single figure, and many reports are partly **scanned**, so a plain text search can't read them at all.
+Annual reports run to 150-250 pages, and much of the important information sits in **tables and charts**, not running text. Analysts spend hours finding a single figure, and many reports are partly **scanned**, so a plain text search can't read them at all.
 
 Standard RAG (retrieval-augmented generation) systems only index text. They miss table values and chart trends, mix up figures from different years, and can produce numbers with a citation that looks right but isn't supported by the source.
 
@@ -105,13 +103,14 @@ A Gradio app using the best fast setup: fine-tuned hybrid search, company and ye
 
 ## 6. Moving forward
 
-- **More companies and sectors:** evaluate on a larger, multi-company test set, including a company the fine-tuned model has never seen
-- **Real analyst questions:** the current test questions are LLM-generated and may favour matching wording
-- **Scanned-page accuracy:** OCR is handled but not separately measured
-- **Fewer wrong refusals:** about 8% of answerable questions are still refused at the answer step
-- **Data year vs report year:** reports include prior-year figures, so summaries should state the period explicitly
-- **Permanent hosting:** `06_app/app.py` is ready to deploy as a Hugging Face Space or on another host
+The pipeline is built to scale: nothing is specific to one company, and every stage is cached and modular. The next steps build on what already works:
 
+- **Scale to more companies and sectors.** The ingestion and indexing stages are company-agnostic, so new reports can be added by dropping PDFs into a folder. The next test is a company the fine-tuned model has never seen, to confirm the 0.85 → 0.95 gain on the held-out report carries across companies.
+- **Test with real analyst questions.** The 56-question test set and LLM judge are already in place, so adding analyst-written questions is a direct extension of the current evaluation.
+- **Measure scanned-page accuracy.** Scanned and mixed pages are already detected and routed to OCR; a separate score for them would show how well this part holds up.
+- **Cut wrong refusals further.** Better retrieval has already brought them down from 13.7% to 7.8%. Adding the fine-tuned model to the answer step, with fewer, more relevant sources, should bring them lower.
+- **Label the data period in every summary.** Year filters already prevent cross-report mix-ups; stating the period of each table (e.g. "FY2022-23 comparatives") would handle prior-year figures inside the same report.
+- **Host it permanently.** `06_app/app.py` and `requirements.txt` are deployment-ready, and search runs in under 0.5 s on CPU, so the app can run on a small, low-cost server.
 ---
 
 **Run it yourself:** add a free Gemini API key to Colab Secrets as `GEMINI_API_KEY`, put PDFs in Google Drive at `annual-report-rag/reports/<company>/<year>.pdf`, and run the notebooks in folder order on a T4 runtime. Notebook 6 launches the app with a public link. Large files (PDFs, indexes, the fine-tuned model) stay on Google Drive, not in this repo.
