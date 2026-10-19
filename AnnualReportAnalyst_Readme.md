@@ -51,23 +51,23 @@ Each folder has its own notebook and a **README** with the method, results and c
 
 ### [01 · Ingestion](01_ingestion/)
 Classifies every page as digital, scanned or mixed, and runs OCR only where it's needed. Docling extracts text in structure-aware chunks, tables as Markdown and charts as images, each tagged with company, year and page. Reports are processed in 40-page batches with checkpoints so Colab doesn't run out of memory.
-*Details in [`01_ingestion/01_readme.md`](01_ingestion/README.md).*
+*Details in [`01_ingestion/01_readme.md`](01_ingestion/01_readme.md).*
 
 ### [02 · RAG pipeline](02_rag_pipeline/)
 A CLIP filter keeps real charts and drops logos and photos, and near-duplicate images are removed. Gemini writes summaries of tables and charts in batches, cutting about 1,400 API calls to about 150. Everything is embedded into ChromaDB, with the company and fiscal year parsed from the question used as filters. Gemini answers from the original tables and chart images with page citations. This stage also found and fixed a hallucinated figure.
-*Details in [`02_rag_pipeline/02__readme.md`](02_rag_pipeline/README.md).*
+*Details in [`02_rag_pipeline/README.md`](02_rag_pipeline/02__readme.md).*
 
 ### [03 · Evaluation and re-ranking](03_evaluation_and_re-ranking/)
 Builds a 56-question test set (tables, text, charts, hand-written and off-topic questions). Compares 7 retrieval setups: dense, BM25, hybrid (RRF), cross-encoder reranker and fusions. An LLM judge scores relevance, because many "misses" turned out to be valid answers on other pages. Answers are graded end to end, including whether the system correctly refuses.
-*Details in [`03_evaluation_and_re-ranking/03_README`](03_evaluation_and_re-ranking/README.md).*
+*Details in [`03_evaluation_and_re-ranking/README`](03_evaluation_and_re-ranking/03_README).*
 
 ### [04 · Visual retrieval](04_Visual_Retrieval/)
 Embeds every page as an image with ColQwen2, so layout and charts can be searched without any text extraction. On its own it scored lower than text search, but adding the top page images to the answer context raised answer accuracy.
-*Details in [`04_Visual_Retrieval/04_readme.md`](04_Visual_Retrieval/README.md).*
+*Details in [`04_Visual_Retrieval/README.md`](04_Visual_Retrieval/04_readme.md).*
 
 ### [05 · Fine-tuning embeddings](05_fine_tune_embedding/)
 Generates question–passage training pairs from the reports themselves, with no manual labelling. Fine-tunes bge-small in 1 minute on a free T4 GPU, holding out one full report and every test answer page to keep the evaluation fair.
-*Details in [`05_fine_tune_embedding/05_README.md`](05_fine_tune_embedding/README.md).*
+*Details in [`05_fine_tune_embedding/README.md`](05_fine_tune_embedding/05_README.md).*
 
 ### [06 · App](06_app/)
 A Gradio app using the best fast setup: fine-tuned hybrid search, company and year filters, and Gemini with chart images in the context. It shows the answer, its sources and the charts used, and falls back to another model if one is busy.
